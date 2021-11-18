@@ -5,9 +5,8 @@
 package userinterface.CustomerRole;
 
 import Business.EcoSystem;
-
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
+
 import java.awt.CardLayout;
 import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
@@ -155,7 +154,6 @@ public class CustomerAreaJPanel extends javax.swing.JPanel {
 
     private void refreshTestJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshTestJButtonActionPerformed
 
-        populateRequestTable();
         
     }//GEN-LAST:event_refreshTestJButtonActionPerformed
 

@@ -5,53 +5,57 @@
  */
 package Business;
 
-
 import Business.Customer.CustomerDirectory;
-import Business.DeliveryMan.DeliveryManDirectory;
-import Business.Restaurant.RestaurantDirectory;
-import Business.Role.Role;
-import Business.Role.SystemAdminRole;
+import Business.SysAdmin.SysAdminDirectory;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
- * @author MyPC1
+ * @author manojreddy
  */
-public class EcoSystem extends Organization{
+public class EcoSystem {
     
-    private static EcoSystem business;
-    private RestaurantDirectory restaurantDirectory;
+    private static EcoSystem ecoSystem;
+    
+    private List<CityNetwork> cityNetworks = new ArrayList<>();
+    
+    private SysAdminDirectory sysAdminDirectory;
+    
     private CustomerDirectory customerDirectory;
-    private DeliveryManDirectory deliveryManDirectory;
-
-    public EcoSystem(RestaurantDirectory restaurantDirectory, CustomerDirectory customerDirectory, DeliveryManDirectory deliveryManDirectory) {
-
-        this.restaurantDirectory = restaurantDirectory;
-        this.customerDirectory = customerDirectory;
-        this.deliveryManDirectory = deliveryManDirectory;
-    }
     
-    public static EcoSystem getInstance(){
-        if(business==null){
-            business=new EcoSystem();
+    public static EcoSystem getInstance() {
+        if(ecoSystem==null){
+            ecoSystem = new EcoSystem();
         }
-        return business;
-    }
-    
-    @Override
-    public ArrayList<Role> getSupportedRole() {
-        ArrayList<Role> roleList=new ArrayList<Role>();
-        roleList.add(new SystemAdminRole());
-        return roleList;
-    }
-    private EcoSystem(){
-        super(null);
-       // networkList=new ArrayList<Network>();
+        return ecoSystem;
     }
 
-    
-    public boolean checkIfUserIsUnique(String userName){
-       //
-       return false;
+    private EcoSystem() {
     }
+
+    public List<CityNetwork> getCityNetworks() {
+        return cityNetworks;
+    }
+
+    public void setCityNetworks(List<CityNetwork> cityNetworks) {
+        this.cityNetworks = cityNetworks;
+    }
+
+    public SysAdminDirectory getSysAdminDirectory() {
+        return sysAdminDirectory;
+    }
+
+    public void setSysAdminDirectory(SysAdminDirectory sysAdminDirectory) {
+        this.sysAdminDirectory = sysAdminDirectory;
+    }
+
+    public CustomerDirectory getCustomerDirectory() {
+        return customerDirectory;
+    }
+
+    public void setCustomerDirectory(CustomerDirectory customerDirectory) {
+        this.customerDirectory = customerDirectory;
+    }
+    
 }

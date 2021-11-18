@@ -5,12 +5,8 @@
 package userinterface.DeliveryManRole;
 
 import Business.EcoSystem;
-
 import Business.UserAccount.UserAccount;
-import Business.WorkQueue.WorkRequest;
-import java.awt.CardLayout;
 import javax.swing.JPanel;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -120,17 +116,6 @@ public class DeliveryManWorkAreaJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void assignJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_assignJButtonActionPerformed
-
-        int selectedRow = workRequestJTable.getSelectedRow();
-        
-        if (selectedRow < 0){
-            return;
-        }
-        
-        WorkRequest request = (WorkRequest)workRequestJTable.getValueAt(selectedRow, 0);
-        request.setReceiver(userAccount);
-        request.setStatus("Pending");
-        populateTable();
         
     }//GEN-LAST:event_assignJButtonActionPerformed
 
