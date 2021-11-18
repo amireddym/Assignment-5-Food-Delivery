@@ -5,20 +5,24 @@
 package userinterface;
 
 import Business.CityNetwork;
+import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
+import Business.Employee.RestaurantEmployee;
 import Business.JpanelManager;
+import Business.Restaurant.Restaurant;
 import Business.SysAdmin.SysAdmin;
 import Business.SysAdmin.SysAdminDirectory;
 import Business.UserAccount.UserAccount;
 
 import java.awt.CardLayout;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
  *
- * @author Lingfeng
+ * @author manojreddy
  */
 public class MainJFrame extends javax.swing.JFrame {
 
@@ -143,6 +147,8 @@ public class MainJFrame extends javax.swing.JFrame {
         
         UserAccount userLogged = null;
         
+        // System Admin Login flow
+        
         if(!system.getSysAdminDirectory().getSysAdmins().isEmpty()){
             
             userLogged = system.getSysAdminDirectory().isUserSysAdmin(userName, password);
@@ -156,6 +162,61 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         }
         
+        // Restaurant Manager flow 
+        
+        if(userLogged==null) {
+            
+            if(!system.getCityNetworks().isEmpty()){
+                for(CityNetwork cityNetwork:system.getCityNetworks()){
+                    
+                    if(!cityNetwork.getRestaurantDirectory().getRestaurants().isEmpty()){
+                        
+                        for(Restaurant restaurant:cityNetwork.getRestaurantDirectory().getRestaurants()){
+                            
+                            for(RestaurantEmployee restaurantEmployee:restaurant.getRestaurantEmployeeDirectory().getEmployeeList()){
+                                
+                                if(restaurantEmployee.getUserName().equals(userName) && restaurantEmployee.getPassword().equals(password)){
+                                    userLogged = restaurantEmployee;
+                                    CardLayout layout=(CardLayout)container.getLayout();
+                                    container.add("restaurantMainPanel", JpanelManager.getRestaurantManagerPanel(container,system,userLogged,restaurant,cityNetwork));
+                                    layout.next(container);
+                                    clearLoginPanels();
+                                    return ;
+                                }
+                                
+                            }
+                            
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
+        
+        // Customer login Flow
+        if(userLogged==null){
+            
+            if(!system.getCustomerDirectory().getCustomers().isEmpty()){
+                
+                for(Customer customer:system.getCustomerDirectory().getCustomers()){
+                    if(customer.getUserName().equals(userName) && customer.getPassword().equals(password)){
+                        userLogged = customer;
+                        CardLayout layout = (CardLayout) container.getLayout();
+                        container.add("CustomerMainPanel",JpanelManager.getCustomerMainPanel(container, system, userLogged));
+                    }
+                }
+            }
+        }
+        
+        // Delivery Person flow
+        if(userLogged == null) {
+            
+        }
+        
+        if(userLogged == null){
+            JOptionPane.showMessageDialog(this, "Please recheck the Credentials once again");
+        }
     }//GEN-LAST:event_loginJButtonActionPerformed
 
     private void clearLoginPanels() {

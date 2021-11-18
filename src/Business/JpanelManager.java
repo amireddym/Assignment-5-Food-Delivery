@@ -5,8 +5,11 @@
  */
 package Business;
 
+import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
+import userinterface.CustomerRole.CustomerMainJPanel;
+import userinterface.RestaurantAdminRole.RestaurantAdminWorkAreaJPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
 /**
@@ -20,5 +23,15 @@ public class JpanelManager {
         return new SystemAdminWorkAreaJPanel(userProcessContainer, ecoSystem, userLogged);
     }
     
+    public static JPanel getRestaurantManagerPanel(JPanel userProcessContainer, EcoSystem ecoSystem, UserAccount userLogged,
+        Restaurant restaurant, CityNetwork cityNetwork) {
+        
+        return new RestaurantAdminWorkAreaJPanel( userProcessContainer, ecoSystem, userLogged,restaurant,cityNetwork);
+    }
+    
+    public static JPanel getCustomerMainPanel(JPanel userProcessContainer, EcoSystem ecoSystem, UserAccount userAccount){
+        
+        return new CustomerMainJPanel(userProcessContainer, ecoSystem, userAccount);
+    }
     
 }

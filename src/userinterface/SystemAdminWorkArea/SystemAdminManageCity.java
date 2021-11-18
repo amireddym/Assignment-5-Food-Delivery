@@ -66,6 +66,11 @@ public class SystemAdminManageCity extends javax.swing.JPanel {
         headerjLabel.setText("Manage Data in the city : ");
 
         manageRestaurantjButton.setText("Manage Restaurants >");
+        manageRestaurantjButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                manageRestaurantjButtonActionPerformed(evt);
+            }
+        });
 
         manageCustomersjButton.setText("Manage Customers >");
         manageCustomersjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -141,6 +146,13 @@ public class SystemAdminManageCity extends javax.swing.JPanel {
         userProcessContainer.add("adminDeliveryPersonManagePanel", new ManageDeliveryPersonsJPanel(userProcessContainer, userLogged, ecosystem, cityNetwork));
         cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_manageDeliveryPersonsjButtonActionPerformed
+
+    private void manageRestaurantjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRestaurantjButtonActionPerformed
+        // TODO add your handling code here:
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("adminRestaurantManagePanel", new ManageRestaurantJPanel(userProcessContainer, userLogged, ecosystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
+    }//GEN-LAST:event_manageRestaurantjButtonActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

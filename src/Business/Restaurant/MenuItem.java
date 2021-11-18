@@ -39,5 +39,11 @@ public class MenuItem extends ModificationInfo{
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    @Override
+    public String toString() {
+        return getProductName(); //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }

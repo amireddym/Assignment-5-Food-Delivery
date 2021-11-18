@@ -42,12 +42,16 @@ public class Order extends ModificationInfo{
     private Restaurant restaurant;
     
     private CityNetwork cityNetwork;
+    
+    private Double totalPrice;
 
     public Order(Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
     }
 
-    public Order(String customerInstructions, String customerFeedBack, String managerFeedback, String deliveryPersonFeedback, Customer orderedBy, RestaurantEmployee assignedBy, String address, int customerDeliveryRating, int deliveryPersonCustomerRating, Restaurant restaurant, CityNetwork cityNetwork, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+    public Order(String customerInstructions, String customerFeedBack, String managerFeedback, String deliveryPersonFeedback, Customer orderedBy, RestaurantEmployee assignedBy, String address, 
+            int customerDeliveryRating, int deliveryPersonCustomerRating, Restaurant restaurant, CityNetwork cityNetwork, Double totalPrice,
+            Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
         this.customerInstructions = customerInstructions;
         this.customerFeedBack = customerFeedBack;
@@ -60,6 +64,7 @@ public class Order extends ModificationInfo{
         this.deliveryPersonCustomerRating = deliveryPersonCustomerRating;
         this.restaurant = restaurant;
         this.cityNetwork = cityNetwork;
+        this.totalPrice = totalPrice;
     }
 
     public List<MenuItem> getMenuItems() {
@@ -157,5 +162,19 @@ public class Order extends ModificationInfo{
     public void setCityNetwork(CityNetwork cityNetwork) {
         this.cityNetwork = cityNetwork;
     }
+
+    public Double getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(Double totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return String.valueOf(getTotalPrice());
+    }
+    
     
 }
