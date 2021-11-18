@@ -224,9 +224,9 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a row");
             return;
         } else {
-            Customer selectedCustomer = (Customer) tblDeliveryPersonsList.getValueAt(selectedRow, 1);
-            UpdateCustomerJPanel updateCustomerJPanel = new UpdateCustomerJPanel(userProcessContainer, selectedCustomer, userLogged);
-            userProcessContainer.add("UpdateCustomerPanel", updateCustomerJPanel);
+            DeliveryMan selectedDeliveryMan = (DeliveryMan) tblDeliveryPersonsList.getValueAt(selectedRow, 1);
+            UpdateDeliveryPersonJPanel updateDeliveryPersonJPanel = new UpdateDeliveryPersonJPanel(userProcessContainer, selectedDeliveryMan, userLogged);
+            userProcessContainer.add("UpdateDeliveryPersonPanel", updateDeliveryPersonJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
         }

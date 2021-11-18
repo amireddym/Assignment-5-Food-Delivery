@@ -105,10 +105,13 @@ public class RestaurantAdminWorkAreaJPanel extends javax.swing.JPanel {
 
     private void manageOrdersJButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageOrdersJButtonActionPerformed
         
-        
+        CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        userProcessContainer.add("ManageOrdersPanel", new ManageOrdersRestaurantJPanel(userProcessContainer, userAccount, restaurant,
+            ecoSystem, cityNetwork));
+        cardLayout.next(userProcessContainer);
     }//GEN-LAST:event_manageOrdersJButtonActionPerformed
     
-    
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel enterpriseLabel;
     private javax.swing.JLabel jLabel1;

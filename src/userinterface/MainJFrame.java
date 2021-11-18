@@ -8,6 +8,7 @@ import Business.CityNetwork;
 import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.DB4OUtil.DB4OUtil;
+import Business.DeliveryMan.DeliveryMan;
 import Business.Employee.RestaurantEmployee;
 import Business.JpanelManager;
 import Business.Restaurant.Restaurant;
@@ -204,18 +205,36 @@ public class MainJFrame extends javax.swing.JFrame {
                         userLogged = customer;
                         CardLayout layout = (CardLayout) container.getLayout();
                         container.add("CustomerMainPanel",JpanelManager.getCustomerMainPanel(container, system, userLogged));
+                        layout.next(container);
+                        clearLoginPanels();
+                        return;
                     }
                 }
             }
         }
         
         // Delivery Person flow
-        if(userLogged == null) {
-            
+        if(userLogged == null) {           
+            if(!system.getCityNetworks().isEmpty()){
+                for(CityNetwork cityNetwork:system.getCityNetworks()){
+                    for(DeliveryMan deliveryMan :cityNetwork.getDeliveryManDirectory().getDeliveryMan()) {
+                        if(deliveryMan.getUserName().equalsIgnoreCase(userName) && deliveryMan.getPassword().equalsIgnoreCase(password)){
+                            userLogged = deliveryMan;
+                            CardLayout layout = (CardLayout) container.getLayout();
+                            container.add("DeliveryMainPanel", JpanelManager.getDeliveryManMainPanel(container, system, cityNetwork, userLogged));
+                            layout.next(container);
+                            clearLoginPanels();
+                            return;
+                            
+                        }
+                    }
+                }
+            }           
         }
         
         if(userLogged == null){
             JOptionPane.showMessageDialog(this, "Please recheck the Credentials once again");
+            return;
         }
     }//GEN-LAST:event_loginJButtonActionPerformed
 

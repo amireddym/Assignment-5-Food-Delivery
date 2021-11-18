@@ -202,7 +202,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnCreateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateActionPerformed
         // TODO add your handling code here:
-        CreateNewDeliveryPersonJPanel panel = new CreateNewDeliveryPersonJPanel(userProcessContainer, ecoSystem, userLogged,cityNetwork);
+        CreateNewRestaurantJPanel panel = new CreateNewRestaurantJPanel(userProcessContainer, userLogged,cityNetwork);
         //          userProcessContainer.remove(this);
         userProcessContainer.add("CreateNewRestaurantJPanel", panel);
         CardLayout layout = (CardLayout) userProcessContainer.getLayout();
@@ -211,17 +211,17 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
         // TODO add your handling code here:
-//        int selectedRow = tblRestaurantsList.getSelectedRow();
-//        if (selectedRow < 0) {
-//            JOptionPane.showMessageDialog(this, "Please select a row");
-//            return;
-//        } else {
-//            Restaurant selectedRestaurant = (Restaurant) tblRestaurantsList.getValueAt(selectedRow, 1);
-//            UpdateCustomerJPanel updateCustomerJPanel = new UpdateCustomerJPanel(userProcessContainer, selectedRestaurant, userLogged, cityNetwork);
-//            userProcessContainer.add("UpdateRestaurantPanel", updateCustomerJPanel);
-//            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-//            layout.next(userProcessContainer);
-//        }
+        int selectedRow = tblRestaurantsList.getSelectedRow();
+        if (selectedRow < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row");
+            return;
+        } else {
+            Restaurant selectedRestaurant = (Restaurant) tblRestaurantsList.getValueAt(selectedRow, 1);
+            UpdateRestaurantJPanel updateRestaurantJPanel = new UpdateRestaurantJPanel(userProcessContainer, selectedRestaurant, userLogged);
+            userProcessContainer.add("UpdateRestaurantPanel", updateRestaurantJPanel);
+            CardLayout layout = (CardLayout) userProcessContainer.getLayout();
+            layout.next(userProcessContainer);
+        }
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void backButtonjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonjButtonActionPerformed

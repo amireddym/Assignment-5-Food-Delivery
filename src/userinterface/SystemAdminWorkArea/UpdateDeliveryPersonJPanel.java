@@ -33,6 +33,16 @@ public class UpdateDeliveryPersonJPanel extends javax.swing.JPanel {
         this.deliveryMan = deliveryMan;
         this.userAccount = userAccount;
         initComponents();
+        initializeData();
+    }
+    
+    private void initializeData(){
+        
+        namejTextField.setText(deliveryMan.getName());
+        userNamejTextField.setText(deliveryMan.getUserName());
+        passwordjTextField.setText(deliveryMan.getPassword());
+        emailjTextField.setText(deliveryMan.getEmail());
+        phoneNojTextField.setText(deliveryMan.getPhoneNo());
     }
 
     /**

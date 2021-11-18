@@ -7,6 +7,7 @@ package Business.Restaurant;
 
 import Business.CityNetwork;
 import Business.Customer.Customer;
+import Business.DeliveryMan.DeliveryMan;
 import Business.Employee.RestaurantEmployee;
 import Business.ModificationInfo;
 import java.util.ArrayList;
@@ -44,13 +45,17 @@ public class Order extends ModificationInfo{
     private CityNetwork cityNetwork;
     
     private Double totalPrice;
+    
+    private OrderStatus orderStatus;
+    
+    private DeliveryMan deliveryMan;
 
     public Order(Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
     }
 
     public Order(String customerInstructions, String customerFeedBack, String managerFeedback, String deliveryPersonFeedback, Customer orderedBy, RestaurantEmployee assignedBy, String address, 
-            int customerDeliveryRating, int deliveryPersonCustomerRating, Restaurant restaurant, CityNetwork cityNetwork, Double totalPrice,
+            int customerDeliveryRating, int deliveryPersonCustomerRating, Restaurant restaurant, CityNetwork cityNetwork, OrderStatus orderStatus, Double totalPrice, DeliveryMan deliveryMan,
             Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
         super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
         this.customerInstructions = customerInstructions;
@@ -65,6 +70,8 @@ public class Order extends ModificationInfo{
         this.restaurant = restaurant;
         this.cityNetwork = cityNetwork;
         this.totalPrice = totalPrice;
+        this.orderStatus = orderStatus;
+        this.deliveryMan = deliveryMan;
     }
 
     public List<MenuItem> getMenuItems() {
@@ -171,10 +178,25 @@ public class Order extends ModificationInfo{
         this.totalPrice = totalPrice;
     }
 
+    public OrderStatus getOrderStatus() {
+        return orderStatus;
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        this.orderStatus = orderStatus;
+    }
+
+    public DeliveryMan getDeliveryMan() {
+        return deliveryMan;
+    }
+
+    public void setDeliveryMan(DeliveryMan deliveryMan) {
+        this.deliveryMan = deliveryMan;
+    }
+    
     @Override
     public String toString() {
         return String.valueOf(getTotalPrice());
     }
-    
     
 }

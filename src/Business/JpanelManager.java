@@ -9,6 +9,7 @@ import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import javax.swing.JPanel;
 import userinterface.CustomerRole.CustomerMainJPanel;
+import userinterface.DeliveryManRole.DeliveryManMainJPanel;
 import userinterface.RestaurantAdminRole.RestaurantAdminWorkAreaJPanel;
 import userinterface.SystemAdminWorkArea.SystemAdminWorkAreaJPanel;
 
@@ -32,6 +33,11 @@ public class JpanelManager {
     public static JPanel getCustomerMainPanel(JPanel userProcessContainer, EcoSystem ecoSystem, UserAccount userAccount){
         
         return new CustomerMainJPanel(userProcessContainer, ecoSystem, userAccount);
+    }
+    
+    public static JPanel getDeliveryManMainPanel(JPanel userProcessContainer, EcoSystem ecoSystem, CityNetwork cityNetwork, UserAccount userAccount) {
+        
+        return new DeliveryManMainJPanel(userProcessContainer, ecoSystem,cityNetwork, userAccount);
     }
     
 }

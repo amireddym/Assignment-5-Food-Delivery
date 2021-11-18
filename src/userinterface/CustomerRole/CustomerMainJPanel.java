@@ -10,6 +10,7 @@ import Business.Customer.Customer;
 import Business.EcoSystem;
 import Business.Restaurant.MenuItem;
 import Business.Restaurant.Order;
+import Business.Restaurant.OrderStatus;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
@@ -101,7 +102,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
             row[2] = order.getRestaurant().getRestaurantName();
             row[3] = order;
             row[4] = order.getCreatedDate();
-//            row[5] = order.
+            row[5] = order.getOrderStatus().name();
             row[6] = order.getCustomerInstructions();
             model.addRow(row);
         }
@@ -133,7 +134,6 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        backButtonjButton = new javax.swing.JButton();
         headerjLabel = new javax.swing.JLabel();
         cityjLabel = new javax.swing.JLabel();
         cityjComboBox = new javax.swing.JComboBox<>();
@@ -149,16 +149,9 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
         menuItemsjTable = new javax.swing.JTable();
         searchjButton = new javax.swing.JButton();
 
-        backButtonjButton.setText("< < Back");
-        backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backButtonjButtonActionPerformed(evt);
-            }
-        });
-
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        headerjLabel.setText("Manage Orders");
+        headerjLabel.setText("Place Orders");
 
         cityjLabel.setText("City :");
 
@@ -259,9 +252,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                         .addGroup(layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addGroup(layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(backButtonjButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(94, 94, 94)
+                                    .addGap(182, 182, 182)
                                     .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 361, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGap(106, 106, 106)
@@ -278,7 +269,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                             .addGap(106, 106, 106)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 596, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
+                        .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
@@ -293,9 +284,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backButtonjButton)
-                    .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cityjLabel)
@@ -314,21 +303,14 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 .addComponent(headerjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(165, Short.MAX_VALUE))
+                .addContainerGap(168, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void backButtonjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonjButtonActionPerformed
-        // TODO add your handling code here:
-
-        userProcessContainer.remove(this);
-        CardLayout layout = (CardLayout) userProcessContainer.getLayout();
-        layout.previous(userProcessContainer);
-    }//GEN-LAST:event_backButtonjButtonActionPerformed
-
     private void searchjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchjButtonActionPerformed
         // TODO add your handling code here:
-        restaurant = cityNetwork.getRestaurantDirectory().getRestaurants().get(cityjComboBox.getSelectedIndex());
+        restaurant = cityNetwork.getRestaurantDirectory().getRestaurants().get(restaurantjComboBox.getSelectedIndex());
+        System.out.println(restaurant.getRestaurantName());
         populateMenuItems();
     }//GEN-LAST:event_searchjButtonActionPerformed
 
@@ -351,7 +333,8 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
         String specialInstructions  = specialInstructionsjTextField.getText();
         
         Order customerOrder = new Order(specialInstructions,"", "", "", customer,null, "", 0,0,
-            restaurant, cityNetwork, totalPrice, new Date(),new Date(), customer.getName(), customer.getName());
+            restaurant, cityNetwork, OrderStatus.OrderPlaced, totalPrice,null, new Date(),new Date(), customer.getName(), customer.getName());
+        customerOrder.getMenuItems().addAll(menuItems);
         
         customer.getOrders().add(customerOrder);
         restaurant.getOrders().add(customerOrder);
@@ -361,7 +344,6 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton backButtonjButton;
     private javax.swing.JComboBox<String> cityjComboBox;
     private javax.swing.JLabel cityjLabel;
     private javax.swing.JLabel cityjLabel1;

@@ -12,6 +12,7 @@ import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
 import java.util.Date;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -193,6 +194,7 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
             new Date(), new Date(), userAccount.getName(), userAccount.getName());
         ecoSystem.getCustomerDirectory().getCustomers().add(customer);
         
+        JOptionPane.showMessageDialog(this, "Successfully saved new Customer");
         resetUi();
     }//GEN-LAST:event_savejButtonActionPerformed
 
