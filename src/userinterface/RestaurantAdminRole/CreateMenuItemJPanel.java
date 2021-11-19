@@ -137,12 +137,33 @@ public class CreateMenuItemJPanel extends javax.swing.JPanel {
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
-        restaurant.getMenuItems().add(new MenuItem(menuNamejTextField.getText(), Double.valueOf(pricejTextField.getText()),
-            new Date(), new Date(), userAccount.getName(), userAccount.getName()));
-        JOptionPane.showMessageDialog(this, "MenuItem Saved Successfully");
+        if(isDataEnteredValid()) {
+            restaurant.getMenuItems().add(new MenuItem(menuNamejTextField.getText(), Double.valueOf(pricejTextField.getText()),
+                new Date(), new Date(), userAccount.getName(), userAccount.getName()));
+            JOptionPane.showMessageDialog(this, "MenuItem Saved Successfully");
+        }else {
+            JOptionPane.showMessageDialog(this, "Error Saving MenuItem. Please check correct DataTypes");
+        }
     }//GEN-LAST:event_savejButtonActionPerformed
 
-
+    private boolean isDataEnteredValid() {
+        if(!menuNamejTextField.getText().isEmpty() && menuNamejTextField.getText().matches("^[a-zA-Z0-9]+$") 
+                && isPriceValid()){
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean isPriceValid() {
+        
+        try{
+            Double.valueOf(pricejTextField.getText());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButtonjButton;
     private javax.swing.JLabel headerjLabel;

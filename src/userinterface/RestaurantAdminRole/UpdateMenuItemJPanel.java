@@ -145,13 +145,35 @@ public class UpdateMenuItemJPanel extends javax.swing.JPanel {
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
-        menuItem.setProductName(menuNamejTextField.getText());
-        menuItem.setPrice(Double.valueOf(pricejTextField.getText()));
-        menuItem.setLastUpdatedDate(new Date());
-        menuItem.setModifiedBy(userAccount.getName());
-        JOptionPane.showMessageDialog(this, "MenuItem Updated Successfully");
+        if(isDataEnteredValid()) {
+            menuItem.setProductName(menuNamejTextField.getText());
+            menuItem.setPrice(Double.valueOf(pricejTextField.getText()));
+            menuItem.setLastUpdatedDate(new Date());
+            menuItem.setModifiedBy(userAccount.getName());
+            JOptionPane.showMessageDialog(this, "MenuItem Updated Successfully");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error Updating MenuItem. Please check correct DataTypes");
+        }
     }//GEN-LAST:event_savejButtonActionPerformed
 
+    private boolean isDataEnteredValid() {
+        if(!menuNamejTextField.getText().isEmpty() && menuNamejTextField.getText().matches("^[a-zA-Z0-9]+$") 
+                && isPriceValid()){
+            return true;
+        }
+        return false;
+    }
+    
+    private boolean isPriceValid() {
+        
+        try{
+            Double.valueOf(pricejTextField.getText());
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButtonjButton;
     private javax.swing.JLabel headerjLabel;
