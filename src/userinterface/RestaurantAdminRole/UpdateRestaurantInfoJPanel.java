@@ -165,15 +165,28 @@ public class UpdateRestaurantInfoJPanel extends javax.swing.JPanel {
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
-        
-        restaurant.setAddress(addressjTextField.getText());
-        restaurant.setEmail(emailjTextField.getText());
-        restaurant.setRestaurantName(restaurantNamejTextField.getText());
-        restaurant.setPhoneNo(phoneNojTextField.getText());
-        JOptionPane.showMessageDialog(this, "Successfully updated Restaurant Info");
+        if(isDataEnteredValid()) {
+            restaurant.setAddress(addressjTextField.getText());
+            restaurant.setEmail(emailjTextField.getText());
+            restaurant.setRestaurantName(restaurantNamejTextField.getText());
+            restaurant.setPhoneNo(phoneNojTextField.getText());
+            JOptionPane.showMessageDialog(this, "Successfully updated Restaurant Info");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error updating Restaurant. Please check datatypes");
+        }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
-
+    private boolean isDataEnteredValid() {
+        
+        if(!restaurantNamejTextField.getText().isEmpty() && restaurantNamejTextField.getText().matches("^[a-zA-Z0-9 ']+$") &&
+                !addressjTextField.getText().isEmpty() && !phoneNojTextField.getText().isEmpty() && 
+                phoneNojTextField.getText().matches("^[0-9]+$") && phoneNojTextField.getText().length()==10 &&
+                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$")){
+            return true;
+        }
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel addressjLabel;
     private javax.swing.JTextField addressjTextField;
