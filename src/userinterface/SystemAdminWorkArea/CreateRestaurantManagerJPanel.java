@@ -182,20 +182,33 @@ public class CreateRestaurantManagerJPanel extends javax.swing.JPanel {
 
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
+        if(isDataEnteredValid()) {
+            String name = namejTextField.getText();
+            String userName = userNamejTextField.getText();
+            String password = passwordjTextField.getText();
+            String email = emailjTextField.getText();
+            String phoneNo = phoneNojTextField.getText();
 
-        String name = namejTextField.getText();
-        String userName = userNamejTextField.getText();
-        String password = passwordjTextField.getText();
-        String email = emailjTextField.getText();
-        String phoneNo = phoneNojTextField.getText();
+            restaurant.getRestaurantEmployeeDirectory().getEmployeeList().add(new RestaurantEmployee(name, phoneNo, email, userName, password, Role.RestaurantAdmin,
+                new Date(), new Date(), userAccount.getName(), userAccount.getName()));
 
-        restaurant.getRestaurantEmployeeDirectory().getEmployeeList().add(new RestaurantEmployee(name, phoneNo, email, userName, password, Role.RestaurantAdmin,
-            new Date(), new Date(), userAccount.getName(), userAccount.getName()));
-
-        JOptionPane.showMessageDialog(this, "Successfully saved the Restaurant Manager");
-        resetUi();
+            JOptionPane.showMessageDialog(this, "Successfully saved the Restaurant Manager");
+            resetUi();
+        }else {
+            JOptionPane.showMessageDialog(this, "Error saving the Restaurant Manager. Please check DataTypes");
+        }
     }//GEN-LAST:event_savejButtonActionPerformed
 
+    private boolean isDataEnteredValid() {
+        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && userNamejTextField.getText().matches("^[a-zA-Z0-9]+$") && 
+                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
+                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") 
+                && phoneNojTextField.getText().length()==10 && passwordjTextField.getText().matches("^[a-zA-Z0-9]+$"))  {
+           return true; 
+        }
+        return false;
+    }    
+    
     private void resetUi() {
         namejTextField.setText("");
         userNamejTextField.setText("");

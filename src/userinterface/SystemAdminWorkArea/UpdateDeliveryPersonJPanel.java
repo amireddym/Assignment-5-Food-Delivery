@@ -192,19 +192,31 @@ public class UpdateDeliveryPersonJPanel extends javax.swing.JPanel {
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
+        if(isDataEnteredValid()) {
+            deliveryMan.setName(namejTextField.getText());
+            deliveryMan.setUserName(userNamejTextField.getText());
+            deliveryMan.setPassword(passwordjTextField.getText());
+            deliveryMan.setEmail(emailjTextField.getText());
+            deliveryMan.setPhoneNo(phoneNojTextField.getText());
+            deliveryMan.setModifiedBy(userAccount.getName());
+            deliveryMan.setLastUpdatedDate(new Date());
 
-        deliveryMan.setName(namejTextField.getText());
-        deliveryMan.setUserName(userNamejTextField.getText());
-        deliveryMan.setPassword(passwordjTextField.getText());
-        deliveryMan.setEmail(emailjTextField.getText());
-        deliveryMan.setPhoneNo(phoneNojTextField.getText());
-        deliveryMan.setModifiedBy(userAccount.getName());
-        deliveryMan.setLastUpdatedDate(new Date());
-
-        JOptionPane.showMessageDialog(this, "Successfully Updated the Delivery Person Info");
+            JOptionPane.showMessageDialog(this, "Successfully Updated the Delivery Person Info");
+        }else {
+            JOptionPane.showMessageDialog(this, "Error Updating the Delivery Person Info. Please check DataTypes");
+        }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
-
+    private boolean isDataEnteredValid() {
+        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && userNamejTextField.getText().matches("^[a-zA-Z0-9]+$") && 
+                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
+                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") 
+                && phoneNojTextField.getText().length()==10 && passwordjTextField.getText().matches("^[a-zA-Z0-9]+$"))  {
+           return true; 
+        }
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backjButton;
     private javax.swing.JLabel emailjLabel;

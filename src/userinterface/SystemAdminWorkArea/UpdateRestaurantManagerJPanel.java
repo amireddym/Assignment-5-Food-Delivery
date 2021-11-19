@@ -190,19 +190,31 @@ public class UpdateRestaurantManagerJPanel extends javax.swing.JPanel {
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
+        if(isDataEnteredValid()) {
+            restaurantEmployee.setName(namejTextField.getText());
+            restaurantEmployee.setUserName(userNamejTextField.getText());
+            restaurantEmployee.setPassword(passwordjTextField.getText());
+            restaurantEmployee.setEmail(emailjTextField.getText());
+            restaurantEmployee.setPhoneNo(phoneNojTextField.getText());
+            restaurantEmployee.setLastUpdatedDate(new Date());
+            restaurantEmployee.setModifiedBy(userAccount.getName());
 
-        restaurantEmployee.setName(namejTextField.getText());
-        restaurantEmployee.setUserName(userNamejTextField.getText());
-        restaurantEmployee.setPassword(passwordjTextField.getText());
-        restaurantEmployee.setEmail(emailjTextField.getText());
-        restaurantEmployee.setPhoneNo(phoneNojTextField.getText());
-        restaurantEmployee.setLastUpdatedDate(new Date());
-        restaurantEmployee.setModifiedBy(userAccount.getName());
-        
-        JOptionPane.showMessageDialog(this, "Successfully Updated the Restaurant Manager");
+            JOptionPane.showMessageDialog(this, "Successfully Updated the Restaurant Manager");
+        }else {
+            JOptionPane.showMessageDialog(this, "Error Updating the Restaurant Manager. Please check Datatypes");
+        }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
-
+    private boolean isDataEnteredValid() {
+        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && userNamejTextField.getText().matches("^[a-zA-Z0-9]+$") && 
+                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
+                !phoneNojTextField.getText().isEmpty() && phoneNojTextField.getText().matches("^[0-9]+$") 
+                && phoneNojTextField.getText().length()==10 && passwordjTextField.getText().matches("^[a-zA-Z0-9]+$"))  {
+           return true; 
+        }
+        return false;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButtonjButton;
     private javax.swing.JLabel emailjLabel;

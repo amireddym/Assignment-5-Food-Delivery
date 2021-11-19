@@ -163,15 +163,28 @@ public class UpdateRestaurantJPanel extends javax.swing.JPanel {
 
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
+        if(isDataEnteredValid()){
+            restaurant.setRestaurantName(namejTextField.getText());
+            restaurant.setAddress(addressjTextField.getText());
+            restaurant.setEmail(emailjTextField.getText());
+            restaurant.setPhoneNo(phoneNojTextField.getText());
 
-        restaurant.setRestaurantName(namejTextField.getText());
-        restaurant.setAddress(addressjTextField.getText());
-        restaurant.setEmail(emailjTextField.getText());
-        restaurant.setPhoneNo(phoneNojTextField.getText());
-        
-        JOptionPane.showMessageDialog(this, "Successfully updated Restaurant");
+            JOptionPane.showMessageDialog(this, "Successfully updated Restaurant");
+        }else{
+            JOptionPane.showMessageDialog(this, "Error updating Restaurant. Please check proper DataTypes");
+        }
     }//GEN-LAST:event_updatejButtonActionPerformed
 
+    private boolean isDataEnteredValid() {
+        if(namejTextField.getText().matches("^[a-zA-Z0-9 ']+$") && !addressjTextField.getText().isEmpty() && 
+                emailjTextField.getText().matches("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^.-]+@[a-zA-Z0-9.-]+$") && 
+                !phoneNojTextField.getText().isEmpty() && 
+                phoneNojTextField.getText().matches("^[0-9]+$") && phoneNojTextField.getText().length()==10 ) {
+            return true;
+        }
+        return false;
+    }
+    
     private void backButtonjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonjButtonActionPerformed
         // TODO add your handling code here:
 
