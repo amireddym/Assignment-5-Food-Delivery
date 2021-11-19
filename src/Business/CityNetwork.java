@@ -28,6 +28,11 @@ public class CityNetwork extends ModificationInfo{
         this.deliveryManDirectory = deliveryManDirectory;
     }
     
+    public CityNetwork(CityName cityName, Date createdDate, Date lastUpdatedDate, String createdBy, String modifiedBy) {
+        super(createdDate, lastUpdatedDate, createdBy, modifiedBy);
+        this.cityName = cityName;
+    }
+    
     public CityName getCityName() {
         return cityName;
     }

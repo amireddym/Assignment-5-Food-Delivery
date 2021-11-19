@@ -52,12 +52,14 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 cityNetwork = ecoSystem.getCityNetworks().get(cityjComboBox.getSelectedIndex());
                 restaurantjComboBox.removeAllItems();
                 
-                for(Restaurant resta:cityNetwork.getRestaurantDirectory().getRestaurants()) {
-                    restaurantjComboBox.addItem(resta.getRestaurantName());
+                if(cityNetwork.getRestaurantDirectory().getRestaurants().size()>0) {
+                    for(Restaurant resta:cityNetwork.getRestaurantDirectory().getRestaurants()) {
+                        restaurantjComboBox.addItem(resta.getRestaurantName());
+                    }
+                    restaurantjComboBox.setSelectedIndex(0);
+                    restaurant = cityNetwork.getRestaurantDirectory().getRestaurants().get(0);
+                    populateMenuItems();
                 }
-                restaurantjComboBox.setSelectedIndex(0);
-                restaurant = cityNetwork.getRestaurantDirectory().getRestaurants().get(0);
-                populateMenuItems();
                 
             }
             
@@ -309,6 +311,11 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
 
     private void searchjButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchjButtonActionPerformed
         // TODO add your handling code here:
+        if(restaurantjComboBox.getSelectedIndex()<0) {
+            DefaultTableModel model = (DefaultTableModel) menuItemsjTable.getModel();
+            model.setRowCount(0);
+            return;
+        }
         restaurant = cityNetwork.getRestaurantDirectory().getRestaurants().get(restaurantjComboBox.getSelectedIndex());
         System.out.println(restaurant.getRestaurantName());
         populateMenuItems();
