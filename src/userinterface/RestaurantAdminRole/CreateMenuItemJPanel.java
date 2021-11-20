@@ -147,7 +147,7 @@ public class CreateMenuItemJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_savejButtonActionPerformed
 
     private boolean isDataEnteredValid() {
-        if(!menuNamejTextField.getText().isEmpty() && menuNamejTextField.getText().matches("^[a-zA-Z0-9]+$") 
+        if(!menuNamejTextField.getText().isEmpty() && menuNamejTextField.getText().matches("^[a-zA-Z0-9 ]+$") 
                 && isPriceValid()){
             return true;
         }
