@@ -5,7 +5,6 @@
  */
 package userinterface.RestaurantAdminRole;
 
-import Business.CityName;
 import Business.CityNetwork;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
@@ -65,7 +64,8 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
         
         
         for(Order order:restaurant.getOrders()){
-            if(order.getOrderStatus().name().equalsIgnoreCase(OrderStatus.Delivered.name())){
+            if(order.getOrderStatus().name().equalsIgnoreCase(OrderStatus.Delivered.name()) || 
+                    order.getOrderStatus().name().equalsIgnoreCase(OrderStatus.Decline.name())){
                 successOrderCount++;
                 Object[] row = new Object[6];
                 row[0] = successOrderCount;
@@ -73,8 +73,9 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
                 row[2] = order.getCustomerInstructions();
                 row[3] = order;
                 row[4] = order.getOrderStatus();
-                row[5] = order.getDeliveryMan().getName();
-                
+                if(order.getDeliveryMan()!=null){
+                    row[5] = order.getDeliveryMan().getName();
+                }
                 successOrderModel.addRow(row);
             }else{
                 currentOrderCount++;
@@ -128,6 +129,7 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
         totalCountjLabel = new javax.swing.JLabel();
         pendingCountHeaderjLabel = new javax.swing.JLabel();
         pendingCountjLabel = new javax.swing.JLabel();
+        declinejButton = new javax.swing.JButton();
 
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -210,7 +212,7 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
 
         currentOrdersHeaderjLabel1.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        currentOrdersHeaderjLabel1.setText("Orders Delivered");
+        currentOrdersHeaderjLabel1.setText("Orders Delivered/Declined");
 
         ordersDeliveredjTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -303,6 +305,13 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
         pendingCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
         pendingCountjLabel.setText("0");
 
+        declinejButton.setText("Decline");
+        declinejButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                declinejButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -323,10 +332,12 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(deliveryPersonjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                     .addComponent(deliveryManjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(100, 100, 100)
-                                    .addComponent(acceptjButton))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(acceptjButton)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(declinejButton))
                                 .addGroup(layout.createSequentialGroup()
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addGroup(layout.createSequentialGroup()
@@ -366,7 +377,8 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(deliveryManjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(deliveryPersonjLabel)
-                    .addComponent(acceptjButton))
+                    .addComponent(acceptjButton)
+                    .addComponent(declinejButton))
                 .addGap(24, 24, 24)
                 .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -454,6 +466,27 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_ordersDeliveredjTableMouseClicked
 
+    private void declinejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_declinejButtonActionPerformed
+        // TODO add your handling code here:
+        int selectedIndex = currentOrdersjTable.getSelectedRow();
+        if(selectedIndex<0) {
+            JOptionPane.showMessageDialog(this, "Please select an Order to Decline");
+            return;
+        }
+        DefaultTableModel currentOrdersModel = (DefaultTableModel) currentOrdersjTable.getModel();
+        Order order = (Order) currentOrdersModel.getValueAt(selectedIndex, 3);
+        if(order.getDeliveryMan()!=null) {
+            JOptionPane.showMessageDialog(this,"Already accepted order and Delivery person is Assigned");
+            return;
+        }
+        order.setOrderStatus(OrderStatus.Decline);
+        DefaultTableModel currentOrderItemModel = (DefaultTableModel) currentMenuItemjTable.getModel();
+        currentOrderItemModel.setRowCount(0);
+        
+        populateData();
+        
+    }//GEN-LAST:event_declinejButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton acceptjButton;
@@ -462,6 +495,7 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel currentOrdersHeaderjLabel;
     private javax.swing.JLabel currentOrdersHeaderjLabel1;
     private javax.swing.JTable currentOrdersjTable;
+    private javax.swing.JButton declinejButton;
     private javax.swing.JTable deliveredMenuItemjTable;
     private javax.swing.JComboBox<String> deliveryManjComboBox;
     private javax.swing.JLabel deliveryPersonjLabel;
