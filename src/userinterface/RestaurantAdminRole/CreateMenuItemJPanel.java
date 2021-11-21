@@ -141,6 +141,8 @@ public class CreateMenuItemJPanel extends javax.swing.JPanel {
             restaurant.getMenuItems().add(new MenuItem(menuNamejTextField.getText(), Double.valueOf(pricejTextField.getText()),
                 new Date(), new Date(), userAccount.getName(), userAccount.getName()));
             JOptionPane.showMessageDialog(this, "MenuItem Saved Successfully");
+            menuNamejTextField.setText("");
+            pricejTextField.setText("");
         }else {
             JOptionPane.showMessageDialog(this, "Error Saving MenuItem. Please check correct DataTypes");
         }
