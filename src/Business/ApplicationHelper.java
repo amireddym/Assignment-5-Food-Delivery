@@ -50,4 +50,70 @@ public class ApplicationHelper {
 
     }
     
+    public static boolean checkEmailAlreadyExists(EcoSystem ecoSystem, String email) {
+        
+        for(SysAdmin sysAdmin:ecoSystem.getSysAdminDirectory().getSysAdmins()) {
+            if(sysAdmin.getEmail().contentEquals(email)){
+                return true;
+            }
+        }
+        
+        for(Customer customer:ecoSystem.getCustomerDirectory().getCustomers()) {
+            if(customer.getEmail().contentEquals(email)) {
+                return true;
+            }
+        }
+        
+        for(CityNetwork cityNetwork:ecoSystem.getCityNetworks()) {
+            for(DeliveryMan deliveryMan:cityNetwork.getDeliveryManDirectory().getDeliveryMan()){
+                if(deliveryMan.getEmail().contentEquals(email)){
+                    return true;
+                }
+            }
+            
+            for(Restaurant restaurant:cityNetwork.getRestaurantDirectory().getRestaurants()) {
+                for(RestaurantEmployee restaurantEmployee:restaurant.getRestaurantEmployeeDirectory().getEmployeeList()) {
+                    if(restaurantEmployee.getEmail().contentEquals(email)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public static boolean checkPhoneNoAlreadyExists(EcoSystem ecoSystem, String phoneNo) {
+        
+        for(SysAdmin sysAdmin:ecoSystem.getSysAdminDirectory().getSysAdmins()) {
+            if(sysAdmin.getPhoneNo().contentEquals(phoneNo)){
+                return true;
+            }
+        }
+        
+        for(Customer customer:ecoSystem.getCustomerDirectory().getCustomers()) {
+            if(customer.getPhoneNo().contentEquals(phoneNo)) {
+                return true;
+            }
+        }
+        
+        for(CityNetwork cityNetwork:ecoSystem.getCityNetworks()) {
+            for(DeliveryMan deliveryMan:cityNetwork.getDeliveryManDirectory().getDeliveryMan()){
+                if(deliveryMan.getPhoneNo().contentEquals(phoneNo)){
+                    return true;
+                }
+            }
+            
+            for(Restaurant restaurant:cityNetwork.getRestaurantDirectory().getRestaurants()) {
+                for(RestaurantEmployee restaurantEmployee:restaurant.getRestaurantEmployeeDirectory().getEmployeeList()) {
+                    if(restaurantEmployee.getPhoneNo().contentEquals(phoneNo)) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+
+    }    
+    
 }

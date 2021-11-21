@@ -199,7 +199,15 @@ public class UpdateRestaurantManagerJPanel extends javax.swing.JPanel {
             if(!restaurantEmployee.getUserName().equals(userNamejTextField.getText()) && ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
-            }              
+            }
+            if(!restaurantEmployee.getEmail().equals(emailjTextField.getText()) && ApplicationHelper.checkEmailAlreadyExists(ecoSystem, emailjTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(!restaurantEmployee.getPhoneNo().equals(phoneNojTextField.getText()) && ApplicationHelper.checkPhoneNoAlreadyExists(ecoSystem, phoneNojTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
             restaurantEmployee.setName(namejTextField.getText());
             restaurantEmployee.setUserName(userNamejTextField.getText());
             restaurantEmployee.setPassword(passwordjTextField.getText());

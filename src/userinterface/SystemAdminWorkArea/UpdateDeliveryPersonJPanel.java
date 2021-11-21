@@ -200,7 +200,14 @@ public class UpdateDeliveryPersonJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
             }            
-            
+            if(!deliveryMan.getEmail().equals(emailjTextField.getText()) && ApplicationHelper.checkEmailAlreadyExists(ecoSystem, emailjTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(!deliveryMan.getPhoneNo().equals(phoneNojTextField.getText()) && ApplicationHelper.checkPhoneNoAlreadyExists(ecoSystem, phoneNojTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
             deliveryMan.setName(namejTextField.getText());
             deliveryMan.setUserName(userNamejTextField.getText());
             deliveryMan.setPassword(passwordjTextField.getText());

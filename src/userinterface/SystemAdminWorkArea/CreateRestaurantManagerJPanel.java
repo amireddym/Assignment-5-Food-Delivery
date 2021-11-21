@@ -191,7 +191,15 @@ public class CreateRestaurantManagerJPanel extends javax.swing.JPanel {
             if(ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
-            }            
+            }
+            if(ApplicationHelper.checkEmailAlreadyExists(ecoSystem, emailjTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(ApplicationHelper.checkPhoneNoAlreadyExists(ecoSystem, phoneNojTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
             String name = namejTextField.getText();
             String userName = userNamejTextField.getText();
             String password = passwordjTextField.getText();
