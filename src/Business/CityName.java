@@ -15,7 +15,7 @@ import java.util.stream.Stream;
  * @author manojreddy
  */
 public enum CityName {
-    Boston,NewYork,Florida;
+    Boston,NewYork,Florida,Texas,California,Chicago,Michigan,Seattle,SanDieago;
     
     public static List<String> getCitiesList(){
        

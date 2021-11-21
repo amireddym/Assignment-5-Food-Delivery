@@ -9,6 +9,7 @@ import Business.CityNetwork;
 import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
+import java.awt.Component;
 import javax.swing.JPanel;
 
 /**
@@ -129,6 +130,9 @@ public class SystemAdminManageCity extends javax.swing.JPanel {
         // TODO add your handling code here:
         userProcessContainer.remove(this);
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
+        Component[] components = userProcessContainer.getComponents();
+        SystemAdminWorkAreaJPanel systemAdminWorkAreaJPanel = (SystemAdminWorkAreaJPanel) components[components.length-1];
+        systemAdminWorkAreaJPanel.populateSysAdmins();
         cardLayout.previous(userProcessContainer);
     }//GEN-LAST:event_backjButtonActionPerformed
 
