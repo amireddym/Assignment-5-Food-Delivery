@@ -189,6 +189,14 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
                 return;
             }
+            if(!sysAdmin.getEmail().equals(emailjTextField.getText()) && ApplicationHelper.checkEmailAlreadyExists(ecoSystem, emailjTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "Email already Exists in the Ecosystem.");
+                return;
+            }
+            if(!sysAdmin.getPhoneNo().equals(phoneNojTextField.getText()) && ApplicationHelper.checkPhoneNoAlreadyExists(ecoSystem, phoneNojTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "PhoneNo already Exists in the Ecosystem.");
+                return;
+            }
             sysAdmin.setName(namejTextField.getText());
             sysAdmin.setUserName(userNamejTextField.getText());
             sysAdmin.setPassword(passwordjTextField.getText());
