@@ -5,7 +5,9 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.ApplicationHelper;
 import Business.Customer.Customer;
+import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -26,11 +28,13 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Customer customer;
     private UserAccount userAccount;
+    private EcoSystem ecoSystem;
     
-    public UpdateCustomerJPanel(JPanel userProcessContainer, Customer customer, UserAccount userAccount) {
+    public UpdateCustomerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, Customer customer, UserAccount userAccount) {
         this.userProcessContainer = userProcessContainer;
         this.customer = customer;
         this.userAccount = userAccount;
+        this.ecoSystem = ecoSystem;
         initComponents();
         initializeUi();
     }
@@ -192,6 +196,11 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
+            
+            if(!customer.getUserName().equals(userNamejTextField.getText()) && ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }            
             customer.setName(namejTextField.getText());
             customer.setUserName(userNamejTextField.getText());
             customer.setPassword(passwordjTextField.getText());

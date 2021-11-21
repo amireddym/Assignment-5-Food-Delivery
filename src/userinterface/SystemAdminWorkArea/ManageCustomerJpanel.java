@@ -42,17 +42,22 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
         int count=0;
         for(Customer customer:ecoSystem.getCustomerDirectory().getCustomers()){
             count++;
-            Object[] row = new Object[6];
+            Object[] row = new Object[10];
             row[0]=count;
             row[1]=customer;
             row[2]=customer.getUserName();
             row[3]=customer.getPassword();
             row[4]=customer.getPhoneNo();
             row[5]=customer.getEmail();
+            row[6]=customer.getCreatedBy();
+            row[7]=customer.getCreatedDate();
+            row[8]=customer.getModifiedBy();
+            row[9]=customer.getLastUpdatedDate();
             
             model.addRow(row);
         }
         
+        counterjLabel.setText(String.valueOf(ecoSystem.getCustomerDirectory().getCustomers().size()));
     }
     
     /**
@@ -72,6 +77,8 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
         headerjLabel = new javax.swing.JLabel();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        countHeaderjLabel = new javax.swing.JLabel();
+        counterjLabel = new javax.swing.JLabel();
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -92,14 +99,14 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "S-No", "Name", "UserName", "Password", "MobileNo", "Email"
+                "S-No", "Name", "UserName", "Password", "MobileNo", "Email", "Created By", "Created Date", "LastModified By", "Last Modified Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                true, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -137,6 +144,11 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
             }
         });
 
+        countHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        countHeaderjLabel.setText("Total Count : ");
+
+        counterjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,20 +161,21 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
                         .addGap(178, 178, 178)
                         .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 242, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
+                        .addGap(78, 78, 78)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(headercustomerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(581, 581, 581))))))
-                .addContainerGap(120, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(countHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(counterjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(526, 526, 526)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(headercustomerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1029, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(68, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,11 +189,14 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(77, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(countHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(counterjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -225,7 +241,7 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
             return;
         } else {
             Customer selectedCustomer = (Customer) tblCustomerList.getValueAt(selectedRow, 1);
-            UpdateCustomerJPanel updateCustomerJPanel = new UpdateCustomerJPanel(userProcessContainer, selectedCustomer, userLogged);
+            UpdateCustomerJPanel updateCustomerJPanel = new UpdateCustomerJPanel(userProcessContainer, ecoSystem, selectedCustomer, userLogged);
             userProcessContainer.add("UpdateCustomerPanel", updateCustomerJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -238,6 +254,8 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel countHeaderjLabel;
+    private javax.swing.JLabel counterjLabel;
     private javax.swing.JLabel headercustomerjLabel;
     private javax.swing.JLabel headerjLabel;
     private javax.swing.JScrollPane jScrollPane1;

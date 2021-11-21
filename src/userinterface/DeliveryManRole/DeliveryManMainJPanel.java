@@ -5,15 +5,12 @@
  */
 package userinterface.DeliveryManRole;
 
-import Business.CityName;
 import Business.CityNetwork;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
-import Business.Restaurant.MenuItem;
 import Business.Restaurant.Order;
 import Business.Restaurant.OrderStatus;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -83,6 +80,7 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
             }
             
         }
+        totalCountjLabel.setText(String.valueOf(deliveredOrderCount));
     }
     
     /**
@@ -105,6 +103,8 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
         feedbackjTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         ratingjComboBox = new javax.swing.JComboBox<>();
+        totalCountHeaderjLabel = new javax.swing.JLabel();
+        totalCountjLabel = new javax.swing.JLabel();
 
         currentOrdersHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -118,7 +118,7 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "CustomerName", "SpecialRequests", "Total Price", "Status", "AssignedBy", "Restaurant"
+                "Serial-No", "CustomerName", "SpecialRequests", "Total Price($)", "Status", "AssignedBy", "Restaurant"
             }
         ) {
             Class[] types = new Class [] {
@@ -154,7 +154,7 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "CustomerName", "SpecialRequests", "Total Price", "Status", "AssignedBy", "Restaurant"
+                "Serial-No", "CustomerName", "SpecialRequests", "Total Price($)", "Status", "AssignedBy", "Restaurant"
             }
         ) {
             Class[] types = new Class [] {
@@ -183,7 +183,7 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
             deliveredOrdersjTable.getColumnModel().getColumn(0).setPreferredWidth(4);
         }
 
-        deliveredjButton.setText("Delivered");
+        deliveredjButton.setText("Mark Delivered");
         deliveredjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deliveredjButtonActionPerformed(evt);
@@ -199,6 +199,12 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
         ratingjComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5" }));
         ratingjComboBox.setSelectedIndex(4);
 
+        totalCountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        totalCountHeaderjLabel.setText("Total Count :");
+
+        totalCountjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        totalCountjLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -213,21 +219,25 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
                         .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(58, 58, 58)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(feedbackjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(52, 52, 52)
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(ratingjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(deliveredjButton))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(185, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(feedbackjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(52, 52, 52)
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(ratingjComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(deliveredjButton))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(totalCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(85, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +257,11 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
                 .addComponent(currentOrdersHeaderjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(26, 26, 26)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 198, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalCountHeaderjLabel)
+                    .addComponent(totalCountjLabel))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -287,5 +301,7 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JComboBox<String> ratingjComboBox;
+    private javax.swing.JLabel totalCountHeaderjLabel;
+    private javax.swing.JLabel totalCountjLabel;
     // End of variables declaration//GEN-END:variables
 }

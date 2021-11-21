@@ -5,6 +5,8 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.ApplicationHelper;
+import Business.EcoSystem;
 import Business.Employee.RestaurantEmployee;
 import Business.Restaurant.Restaurant;
 import Business.Role.Role;
@@ -28,11 +30,13 @@ public class CreateRestaurantManagerJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private Restaurant restaurant;
     private UserAccount userAccount;
+    private EcoSystem ecoSystem;
     
-    public CreateRestaurantManagerJPanel(JPanel userProcessContainer, Restaurant restaurant, UserAccount userAccount) {
+    public CreateRestaurantManagerJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, Restaurant restaurant, UserAccount userAccount) {
         this.userProcessContainer = userProcessContainer;
         this.userAccount = userAccount;
         this.restaurant = restaurant;
+        this.ecoSystem = ecoSystem;
         initComponents();
     }
 
@@ -183,6 +187,11 @@ public class CreateRestaurantManagerJPanel extends javax.swing.JPanel {
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
+            
+            if(ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }            
             String name = namejTextField.getText();
             String userName = userNamejTextField.getText();
             String password = passwordjTextField.getText();

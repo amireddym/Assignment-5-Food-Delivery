@@ -5,6 +5,7 @@
  */
 package userinterface.SystemAdminWorkArea;
 
+import Business.ApplicationHelper;
 import Business.CityNetwork;
 import Business.DeliveryMan.DeliveryMan;
 import Business.EcoSystem;
@@ -187,6 +188,11 @@ public class CreateNewDeliveryPersonJPanel extends javax.swing.JPanel {
     private void savejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_savejButtonActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
+            
+            if(ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }            
             String name = namejTextField.getText();
             String userName = userNamejTextField.getText();
             String password = passwordjTextField.getText();

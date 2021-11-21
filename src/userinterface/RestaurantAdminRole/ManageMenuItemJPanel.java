@@ -42,13 +42,18 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
         int count = 0;
         for(MenuItem menuItem:restaurant.getMenuItems()){
             count++;
-            Object[] row = new Object[3];
+            Object[] row = new Object[7];
             row[0] = count;
             row[1] = menuItem;
             row[2] = menuItem.getPrice();
+            row[3] = menuItem.getCreatedBy();
+            row[4] = menuItem.getCreatedDate();
+            row[5] = menuItem.getModifiedBy();
+            row[6] = menuItem.getLastUpdatedDate();
             
             model.addRow(row);
         }
+        totalCountjLabel.setText(String.valueOf(restaurant.getMenuItems().size()));
     }
 
     /**
@@ -68,6 +73,8 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
         deliveryPersonsjLabel = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMenuItemsList = new javax.swing.JTable();
+        totalCountHeaderjLabel = new javax.swing.JLabel();
+        totalCountjLabel = new javax.swing.JLabel();
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -109,14 +116,14 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "S-No", "Item Name", "Price Per-dish"
+                "Serial No", "Item Name", "Price Per-dish ($)", "Created By", "Created Date", "Last Modified By", "Last Modified Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.Double.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false
+                false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -133,6 +140,12 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
             tblMenuItemsList.getColumnModel().getColumn(0).setPreferredWidth(10);
         }
 
+        totalCountHeaderjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        totalCountHeaderjLabel.setText("Total Count :");
+
+        totalCountjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        totalCountjLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -142,21 +155,25 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(backButtonjButton)
-                        .addGap(90, 90, 90)
+                        .addGap(170, 170, 170)
                         .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(deliveryPersonsjLabel)))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(deliveryPersonsjLabel)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(totalCountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(totalCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 890, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -173,8 +190,10 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(totalCountHeaderjLabel)
+                    .addComponent(totalCountjLabel))
+                .addContainerGap(138, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -235,5 +254,7 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel headerjLabel;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblMenuItemsList;
+    private javax.swing.JLabel totalCountHeaderjLabel;
+    private javax.swing.JLabel totalCountjLabel;
     // End of variables declaration//GEN-END:variables
 }

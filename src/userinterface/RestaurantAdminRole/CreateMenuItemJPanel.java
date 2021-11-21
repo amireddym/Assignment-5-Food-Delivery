@@ -69,7 +69,7 @@ public class CreateMenuItemJPanel extends javax.swing.JPanel {
 
         pricejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pricejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        pricejLabel.setText("Price :");
+        pricejLabel.setText("Price ($)  :");
 
         savejButton.setText("Save");
         savejButton.addActionListener(new java.awt.event.ActionListener() {

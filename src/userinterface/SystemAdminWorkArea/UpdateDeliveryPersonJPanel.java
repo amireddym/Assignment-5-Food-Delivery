@@ -5,8 +5,9 @@
  */
 package userinterface.SystemAdminWorkArea;
 
-import Business.Customer.Customer;
+import Business.ApplicationHelper;
 import Business.DeliveryMan.DeliveryMan;
+import Business.EcoSystem;
 import Business.UserAccount.UserAccount;
 import java.awt.CardLayout;
 import java.awt.Component;
@@ -27,11 +28,13 @@ public class UpdateDeliveryPersonJPanel extends javax.swing.JPanel {
     private JPanel userProcessContainer;
     private DeliveryMan deliveryMan;
     private UserAccount userAccount;
+    private EcoSystem ecoSystem;
     
-    public UpdateDeliveryPersonJPanel(JPanel userProcessContainer, DeliveryMan deliveryMan, UserAccount userAccount) {
+    public UpdateDeliveryPersonJPanel(JPanel userProcessContainer, EcoSystem ecoSystem, DeliveryMan deliveryMan, UserAccount userAccount) {
         this.userProcessContainer = userProcessContainer;
         this.deliveryMan = deliveryMan;
         this.userAccount = userAccount;
+        this.ecoSystem = ecoSystem;
         initComponents();
         initializeData();
     }
@@ -193,6 +196,11 @@ public class UpdateDeliveryPersonJPanel extends javax.swing.JPanel {
     private void updatejButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updatejButtonActionPerformed
         // TODO add your handling code here:
         if(isDataEnteredValid()) {
+            if(!deliveryMan.getUserName().equals(userNamejTextField.getText()) && ApplicationHelper.checkUserNameAlreadyExists(ecoSystem, userNamejTextField.getText())) {
+                JOptionPane.showMessageDialog(this, "UserName already Exists in the Ecosystem.");
+                return;
+            }            
+            
             deliveryMan.setName(namejTextField.getText());
             deliveryMan.setUserName(userNamejTextField.getText());
             deliveryMan.setPassword(passwordjTextField.getText());

@@ -47,16 +47,21 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
         for(DeliveryMan deliveryMan:cityNetwork.getDeliveryManDirectory().getDeliveryMan()) {
             
             count++;
-            Object[] row = new Object[6];
+            Object[] row = new Object[10];
             row[0]=count;
             row[1]=deliveryMan;
             row[2]=deliveryMan.getUserName();
             row[3]=deliveryMan.getPassword();
             row[4]=deliveryMan.getPhoneNo();
             row[5]=deliveryMan.getEmail();
+            row[6]=deliveryMan.getCreatedBy();
+            row[7]=deliveryMan.getCreatedDate();
+            row[8]=deliveryMan.getModifiedBy();
+            row[9]=deliveryMan.getLastUpdatedDate();
             
             model.addRow(row);
         }
+        counterjLabel.setText(String.valueOf(cityNetwork.getDeliveryManDirectory().getDeliveryMan().size()));
     }
     
     /**
@@ -76,6 +81,8 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
         btnDelete = new javax.swing.JButton();
         btnCreate = new javax.swing.JButton();
         btnUpdate = new javax.swing.JButton();
+        countHeaderjLabel = new javax.swing.JLabel();
+        counterjLabel = new javax.swing.JLabel();
 
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
@@ -96,14 +103,14 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "S-No", "Name", "UserName", "Password", "MobileNo", "Email"
+                "S-No", "Name", "UserName", "Password", "MobileNo", "Email", "Created By", "Created Date", "Last ModifiedBy", "Last Modified Date"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
             boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -140,6 +147,11 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
             }
         });
 
+        countHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        countHeaderjLabel.setText("Total Count : ");
+
+        counterjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -149,21 +161,24 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(backButtonjButton)
-                        .addGap(90, 90, 90)
+                        .addGap(203, 203, 203)
                         .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(countHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(counterjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 690, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(deliveryPersonsjLabel)))))
-                .addContainerGap(87, Short.MAX_VALUE))
+                            .addComponent(deliveryPersonsjLabel)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1031, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,11 +192,14 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 202, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(countHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(counterjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(97, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -225,7 +243,7 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
             return;
         } else {
             DeliveryMan selectedDeliveryMan = (DeliveryMan) tblDeliveryPersonsList.getValueAt(selectedRow, 1);
-            UpdateDeliveryPersonJPanel updateDeliveryPersonJPanel = new UpdateDeliveryPersonJPanel(userProcessContainer, selectedDeliveryMan, userLogged);
+            UpdateDeliveryPersonJPanel updateDeliveryPersonJPanel = new UpdateDeliveryPersonJPanel(userProcessContainer, ecoSystem, selectedDeliveryMan, userLogged);
             userProcessContainer.add("UpdateDeliveryPersonPanel", updateDeliveryPersonJPanel);
             CardLayout layout = (CardLayout) userProcessContainer.getLayout();
             layout.next(userProcessContainer);
@@ -238,6 +256,8 @@ public class ManageDeliveryPersonsJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnCreate;
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnUpdate;
+    private javax.swing.JLabel countHeaderjLabel;
+    private javax.swing.JLabel counterjLabel;
     private javax.swing.JLabel deliveryPersonsjLabel;
     private javax.swing.JLabel headerjLabel;
     private javax.swing.JScrollPane jScrollPane1;

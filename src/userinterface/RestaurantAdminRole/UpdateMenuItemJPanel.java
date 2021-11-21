@@ -81,7 +81,7 @@ public class UpdateMenuItemJPanel extends javax.swing.JPanel {
 
         pricejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         pricejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        pricejLabel.setText("Price :");
+        pricejLabel.setText("Price ($) :");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);

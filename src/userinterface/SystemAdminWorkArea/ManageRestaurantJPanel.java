@@ -57,7 +57,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             
             model.addRow(row);
         }
-        
+        restaurantCountjLabel.setText(String.valueOf(cityNetwork.getRestaurantDirectory().getRestaurants().size()));
         DefaultTableModel managersModel = (DefaultTableModel) tblRestaurantManagersJtable.getModel();
         managersModel.setRowCount(0);
     }
@@ -87,6 +87,10 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         btnUpdateManagers = new javax.swing.JButton();
         btnDeleteManagers = new javax.swing.JButton();
         btnCreateManagers = new javax.swing.JButton();
+        restaurantheaderjLabel = new javax.swing.JLabel();
+        restaurantCountjLabel = new javax.swing.JLabel();
+        restaurantManagerheaderjLabel = new javax.swing.JLabel();
+        restaurantManagerCountjLabel = new javax.swing.JLabel();
 
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
@@ -216,6 +220,18 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             }
         });
 
+        restaurantheaderjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        restaurantheaderjLabel.setText("Count :");
+
+        restaurantCountjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        restaurantCountjLabel.setText("0");
+
+        restaurantManagerheaderjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        restaurantManagerheaderjLabel.setText("Count :");
+
+        restaurantManagerCountjLabel.setFont(new java.awt.Font("Tahoma", 3, 14)); // NOI18N
+        restaurantManagerCountjLabel.setText("0");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -223,42 +239,51 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(75, 75, 75)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(restaurantsjLabel)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnManageRestaurant)
-                                                .addGap(153, 153, 153)
-                                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGap(0, 7, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(btnUpdateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addComponent(btnDeleteManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCreateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(21, 21, 21)
                         .addComponent(backButtonjButton)
                         .addGap(90, 90, 90)
                         .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(207, 207, 207)
+                        .addGap(75, 75, 75)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(restaurantManagerheaderjLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(restaurantManagerCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(btnUpdateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(restaurantsjLabel)
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(btnManageRestaurant)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 342, Short.MAX_VALUE)
+                                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(btnDeleteManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                            .addComponent(btnCreateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                        .addComponent(restaurantheaderjLabel)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(restaurantCountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(10, 10, 10))))
+                            .addComponent(jScrollPane1)
+                            .addComponent(jScrollPane2)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(225, 225, 225)
                         .addComponent(headerManagersjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -268,16 +293,20 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                     .addComponent(backButtonjButton)
                     .addComponent(headerjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(restaurantsjLabel)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(restaurantsjLabel)
+                    .addComponent(restaurantheaderjLabel)
+                    .addComponent(restaurantCountjLabel))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                         .addComponent(btnCreate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnManageRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnManageRestaurant, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(headerManagersjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -286,8 +315,10 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnDeleteManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCreateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnUpdateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(68, Short.MAX_VALUE))
+                    .addComponent(btnUpdateManagers, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(restaurantManagerheaderjLabel)
+                    .addComponent(restaurantManagerCountjLabel))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -361,6 +392,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
                 
                 managersModel.addRow(row);
             }
+            restaurantManagerCountjLabel.setText(String.valueOf(selectedRestaurant.getRestaurantEmployeeDirectory().getEmployeeList().size()));
         }
     }//GEN-LAST:event_btnManageRestaurantActionPerformed
 
@@ -375,7 +407,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         RestaurantEmployee restaurantEmployee = (RestaurantEmployee) restaurantManagerModel.getValueAt(selectedManager, 1);
         
         CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-        userProcessContainer.add("UpdateRestaurantsManagersPanel", new UpdateRestaurantManagerJPanel(userProcessContainer,userLogged, restaurantEmployee));
+        userProcessContainer.add("UpdateRestaurantsManagersPanel", new UpdateRestaurantManagerJPanel(userProcessContainer, ecoSystem, userLogged, restaurantEmployee));
         cardLayout.next(userProcessContainer);
         
     }//GEN-LAST:event_btnUpdateManagersActionPerformed
@@ -408,7 +440,7 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
             DefaultTableModel restaruntsModel = (DefaultTableModel) tblRestaurantsList.getModel();
             Restaurant selectedRestaurant = (Restaurant) restaruntsModel.getValueAt(selectedRow, 1);
             CardLayout cardLayout = (CardLayout) userProcessContainer.getLayout();
-            userProcessContainer.add("CreateMnagerPanel", new CreateRestaurantManagerJPanel(userProcessContainer, selectedRestaurant, userLogged));
+            userProcessContainer.add("CreateManagerPanel", new CreateRestaurantManagerJPanel(userProcessContainer, ecoSystem, selectedRestaurant, userLogged));
             cardLayout.next(userProcessContainer);
             
         }
@@ -434,6 +466,10 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JLabel restaurantCountjLabel;
+    private javax.swing.JLabel restaurantManagerCountjLabel;
+    private javax.swing.JLabel restaurantManagerheaderjLabel;
+    private javax.swing.JLabel restaurantheaderjLabel;
     private javax.swing.JLabel restaurantsjLabel;
     private javax.swing.JTable tblRestaurantManagersJtable;
     private javax.swing.JTable tblRestaurantsList;

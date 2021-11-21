@@ -13,7 +13,6 @@ import Business.Restaurant.Order;
 import Business.Restaurant.OrderStatus;
 import Business.Restaurant.Restaurant;
 import Business.UserAccount.UserAccount;
-import java.awt.CardLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -96,8 +95,10 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) orderHistoryjTable.getModel();
         model.setRowCount(0);
         int count = 0;
+        Double totalCost = 0.0;
         for(Order order:customer.getOrders()){
             count++;
+            totalCost+=order.getTotalPrice();
             Object[] row = new Object[7];
             row[0] = count;
             row[1] = order.getCityNetwork().getCityName().name();
@@ -108,6 +109,8 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
             row[6] = order.getCustomerInstructions();
             model.addRow(row);
         }
+        totalcountjLabel.setText(String.valueOf(customer.getOrders().size()));
+        totalSpentCostjLabel.setText(String.valueOf(totalCost));
     }
     
     private void populateMenuItems() {
@@ -150,6 +153,10 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
         jScrollPane2 = new javax.swing.JScrollPane();
         menuItemsjTable = new javax.swing.JTable();
         searchjButton = new javax.swing.JButton();
+        totalcountHeaderjLabel = new javax.swing.JLabel();
+        totalcountjLabel = new javax.swing.JLabel();
+        totalSpentHeaderjLabel = new javax.swing.JLabel();
+        totalSpentCostjLabel = new javax.swing.JLabel();
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -167,7 +174,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Serial-No", "City", "Restaurant", "Total Price", "Ordered On", "Status", "Instructions"
+                "Serial-No", "City", "Restaurant", "Total Price($)", "Ordered On", "Status", "Instructions"
             }
         ) {
             Class[] types = new Class [] {
@@ -211,7 +218,7 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 {null, null, null}
             },
             new String [] {
-                "Serial-No", "Menu Item", "Price"
+                "Serial-No", "Menu Item", "Price($)"
             }
         ) {
             Class[] types = new Class [] {
@@ -240,6 +247,17 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 searchjButtonActionPerformed(evt);
             }
         });
+
+        totalcountHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 12)); // NOI18N
+        totalcountHeaderjLabel.setText("Total Count :");
+
+        totalcountjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 12)); // NOI18N
+        totalcountjLabel.setText("0");
+
+        totalSpentHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 12)); // NOI18N
+        totalSpentHeaderjLabel.setText("Total Spent($) :");
+
+        totalSpentCostjLabel.setText("0");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -273,14 +291,25 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(110, 110, 110)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(specialInstructionsjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
                                 .addComponent(specialInstructionsjTextField, javax.swing.GroupLayout.PREFERRED_SIZE, 281, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(45, 45, 45)
-                                .addComponent(placeOrderjButton)))))
-                .addContainerGap(166, Short.MAX_VALUE))
+                                .addComponent(placeOrderjButton))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(totalcountHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(totalcountjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 480, Short.MAX_VALUE)
+                                .addComponent(totalSpentHeaderjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(totalSpentCostjLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addGap(155, 155, 155))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(106, 106, 106)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 730, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +334,13 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
                 .addComponent(headerjLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(118, Short.MAX_VALUE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalcountHeaderjLabel)
+                    .addComponent(totalcountjLabel)
+                    .addComponent(totalSpentHeaderjLabel)
+                    .addComponent(totalSpentCostjLabel))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -365,5 +400,9 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
     private javax.swing.JButton searchjButton;
     private javax.swing.JLabel specialInstructionsjLabel;
     private javax.swing.JTextField specialInstructionsjTextField;
+    private javax.swing.JLabel totalSpentCostjLabel;
+    private javax.swing.JLabel totalSpentHeaderjLabel;
+    private javax.swing.JLabel totalcountHeaderjLabel;
+    private javax.swing.JLabel totalcountjLabel;
     // End of variables declaration//GEN-END:variables
 }

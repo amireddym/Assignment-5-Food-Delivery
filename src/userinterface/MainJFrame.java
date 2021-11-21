@@ -12,12 +12,9 @@ import Business.DeliveryMan.DeliveryMan;
 import Business.Employee.RestaurantEmployee;
 import Business.JpanelManager;
 import Business.Restaurant.Restaurant;
-import Business.SysAdmin.SysAdmin;
-import Business.SysAdmin.SysAdminDirectory;
 import Business.UserAccount.UserAccount;
 
 import java.awt.CardLayout;
-import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
