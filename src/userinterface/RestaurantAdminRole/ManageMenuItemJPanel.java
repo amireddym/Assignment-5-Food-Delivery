@@ -76,6 +76,8 @@ public class ManageMenuItemJPanel extends javax.swing.JPanel {
         totalCountHeaderjLabel = new javax.swing.JLabel();
         totalCountjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

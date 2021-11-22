@@ -80,6 +80,8 @@ public class ManageCustomerJpanel extends javax.swing.JPanel {
         countHeaderjLabel = new javax.swing.JLabel();
         counterjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

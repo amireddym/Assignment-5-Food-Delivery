@@ -71,6 +71,8 @@ public class UpdateRestaurantManagerJPanel extends javax.swing.JPanel {
         namejTextField = new javax.swing.JTextField();
         userNamejLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         passwordjLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         passwordjLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         passwordjLabel.setText("Password :");

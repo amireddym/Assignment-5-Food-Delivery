@@ -59,6 +59,8 @@ public class CreateNewSysAdminJPanel extends javax.swing.JPanel {
         namejLabel = new javax.swing.JLabel();
         namejTextField = new javax.swing.JTextField();
 
+        setBackground(java.awt.Color.cyan);
+
         userNamejLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         userNamejLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         userNamejLabel.setText("User Name :");

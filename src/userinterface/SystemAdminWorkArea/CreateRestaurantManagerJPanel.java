@@ -63,6 +63,8 @@ public class CreateRestaurantManagerJPanel extends javax.swing.JPanel {
         savejButton = new javax.swing.JButton();
         namejLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

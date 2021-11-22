@@ -54,6 +54,8 @@ public class CreateNewRestaurantJPanel extends javax.swing.JPanel {
         phoneNojTextField = new javax.swing.JTextField();
         emailjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
