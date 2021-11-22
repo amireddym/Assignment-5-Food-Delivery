@@ -106,6 +106,8 @@ public class DeliveryManMainJPanel extends javax.swing.JPanel {
         totalCountHeaderjLabel = new javax.swing.JLabel();
         totalCountjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         currentOrdersHeaderjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         currentOrdersHeaderjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         currentOrdersHeaderjLabel.setText("Orders Assigned To Me");

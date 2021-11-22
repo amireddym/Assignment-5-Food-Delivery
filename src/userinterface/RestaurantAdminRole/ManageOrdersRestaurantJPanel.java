@@ -131,6 +131,8 @@ public class ManageOrdersRestaurantJPanel extends javax.swing.JPanel {
         pendingCountjLabel = new javax.swing.JLabel();
         declinejButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

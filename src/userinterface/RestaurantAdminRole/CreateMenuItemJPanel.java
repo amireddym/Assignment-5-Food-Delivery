@@ -52,6 +52,8 @@ public class CreateMenuItemJPanel extends javax.swing.JPanel {
         pricejLabel = new javax.swing.JLabel();
         savejButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

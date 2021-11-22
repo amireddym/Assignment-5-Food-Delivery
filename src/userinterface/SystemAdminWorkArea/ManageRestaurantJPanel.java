@@ -92,6 +92,8 @@ public class ManageRestaurantJPanel extends javax.swing.JPanel {
         restaurantManagerheaderjLabel = new javax.swing.JLabel();
         restaurantManagerCountjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         btnDelete.setText("Delete");
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

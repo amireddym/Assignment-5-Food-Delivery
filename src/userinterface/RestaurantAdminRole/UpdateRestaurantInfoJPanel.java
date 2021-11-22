@@ -63,6 +63,8 @@ public class UpdateRestaurantInfoJPanel extends javax.swing.JPanel {
         addressjTextField = new javax.swing.JTextField();
         updatejButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         backButtonjButton.setText("< < Back");
         backButtonjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

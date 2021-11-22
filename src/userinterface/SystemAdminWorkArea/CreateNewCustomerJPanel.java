@@ -60,6 +60,8 @@ public class CreateNewCustomerJPanel extends javax.swing.JPanel {
         phoneNojTextField = new javax.swing.JTextField();
         savejButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

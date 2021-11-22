@@ -71,6 +71,8 @@ public class UpdateCustomerJPanel extends javax.swing.JPanel {
         emailjLabel = new javax.swing.JLabel();
         emailjTextField = new javax.swing.JTextField();
 
+        setBackground(java.awt.Color.cyan);
+
         phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneNojLabel.setText("Phone No :");

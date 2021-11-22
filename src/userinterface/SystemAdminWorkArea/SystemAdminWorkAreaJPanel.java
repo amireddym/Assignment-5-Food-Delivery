@@ -100,7 +100,10 @@ public class SystemAdminWorkAreaJPanel extends javax.swing.JPanel {
         deletejButton = new javax.swing.JButton();
         updatejButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
         setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setBackground(java.awt.Color.cyan);
 
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

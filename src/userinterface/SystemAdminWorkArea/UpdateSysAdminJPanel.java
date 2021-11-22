@@ -71,6 +71,8 @@ public class UpdateSysAdminJPanel extends javax.swing.JPanel {
         emailjTextField = new javax.swing.JTextField();
         headerjLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         phoneNojLabel.setFont(new java.awt.Font("Lucida Grande", 1, 13)); // NOI18N
         phoneNojLabel.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         phoneNojLabel.setText("Phone No :");

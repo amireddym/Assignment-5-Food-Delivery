@@ -164,6 +164,8 @@ public class CustomerMainJPanel extends javax.swing.JPanel {
         feedbackjTextField = new javax.swing.JTextField();
         submitjButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         headerjLabel.setFont(new java.awt.Font("Lucida Grande", 3, 18)); // NOI18N
         headerjLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         headerjLabel.setText("Place Orders");

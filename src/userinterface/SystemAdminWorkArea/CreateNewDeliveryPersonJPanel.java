@@ -63,6 +63,8 @@ public class CreateNewDeliveryPersonJPanel extends javax.swing.JPanel {
         emailjTextField = new javax.swing.JTextField();
         phoneNojLabel = new javax.swing.JLabel();
 
+        setBackground(java.awt.Color.cyan);
+
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

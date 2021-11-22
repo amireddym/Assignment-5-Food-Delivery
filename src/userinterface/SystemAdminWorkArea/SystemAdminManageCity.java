@@ -55,6 +55,8 @@ public class SystemAdminManageCity extends javax.swing.JPanel {
         manageCustomersjButton = new javax.swing.JButton();
         manageDeliveryPersonsjButton = new javax.swing.JButton();
 
+        setBackground(java.awt.Color.cyan);
+
         backjButton.setText("< < Back");
         backjButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
